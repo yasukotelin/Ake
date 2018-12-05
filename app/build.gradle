@@ -34,4 +34,7 @@ dependencies {
 
     // kotlinx.coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
+
+    // jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
 }
