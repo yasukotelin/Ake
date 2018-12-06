@@ -39,9 +39,7 @@ class MainFragment : Fragment() {
         GlobalScope.launch {
             val doc = ClothesIndexClient().getDocumentAsync()
 
-            launch(Dispatchers.Main) {
-                main_fragment_txv_test.text = "今日の服装指数: ${doc.await().getTodayWeatherIndex()}"
-            }
+            viewModel.clothesIndexDocument = doc.await()
         }
 
         // 非同期で実行後、awaitで取得できたことを確認したらfragmentに表示する
