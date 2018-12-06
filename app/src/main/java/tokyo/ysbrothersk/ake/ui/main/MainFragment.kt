@@ -30,18 +30,12 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
-
-        // 1. 気象庁から東京の天気情報取得
-
-        // 2. 東京の服装指数を取得
-        GlobalScope.launch {
-            val doc = ClothesIndexClient().getDocumentAsync()
-
-            viewModel.clothesIndexDocument = doc.await()
-        }
-
-        // 非同期で実行後、awaitで取得できたことを確認したらfragmentに表示する
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_fragment_frame_clothes_index, ClothesIndexFragment.newInstance())
+            .commit()
     }
 }
