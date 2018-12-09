@@ -35,6 +35,7 @@ class MainFragment : Fragment() {
 
         childFragmentManager
             .beginTransaction()
+            .replace(R.id.main_fragment_frame_jma, JMAFragment.newInstance())
             .replace(R.id.main_fragment_frame_clothes_index, ClothesIndexFragment.newInstance())
             .commit()
     }

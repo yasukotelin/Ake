@@ -1,8 +1,6 @@
 package tokyo.ysbrothersk.ake.document
 
 import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
 
 class JMADocument(private val document: Document) {
 
@@ -15,8 +13,19 @@ class JMADocument(private val document: Document) {
         .select("img")
         .attr("abs:src")
 
+    fun getTodayWeatherTitle(): String = document
+        .select("table.forecast th.weather")
+        .first()
+        .select("img")
+        .attr("title")
+
     fun getTomorrowWeatherImgUrl(): String = document
         .select("table.forecast th.weather")[1]
         .select("img")
         .attr("abs:src")
+
+    fun getTomorrowWeatherTitle(): String = document
+        .select("table.forecast th.weather")[1]
+        .select("img")
+        .attr("title")
 }
