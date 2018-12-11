@@ -19,6 +19,12 @@ class JMADocument(private val document: Document) {
         .select("img")
         .attr("title")
 
+    fun getTodayRainyPercent() = document
+        .select("table.forecast td.rain")
+        .first()
+        .select("td[align=right]")
+        .map { it.text() }
+
     fun getTomorrowWeatherImgUrl(): String = document
         .select("table.forecast th.weather")[1]
         .select("img")
@@ -28,4 +34,9 @@ class JMADocument(private val document: Document) {
         .select("table.forecast th.weather")[1]
         .select("img")
         .attr("title")
+
+    fun getTomorrowRainyPercent(): List<String> = document
+        .select("table.forecast td.rain")[1]
+        .select("td[align=right]")
+        .map { it.text() }
 }
